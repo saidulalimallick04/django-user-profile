@@ -1,0 +1,57 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" id="login-page">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login to Your Account</title>
+    <link rel="stylesheet" href="{% static "style.css" %}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Login</h1>
+            <nav>
+                
+                <ul class="nav-links">
+                    <li><a href="{% url "landing_page" %}">Home</a></li>
+
+                    <li><a href="{% url "create_account_page" %}">Sign Up</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content container auth-container">
+        <form id="login-form" class="card" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="login-identifier">Email:</label>
+                <input type="email" id="login-identifier" name="login-identifier" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="login-password">Password:</label>
+                <div class="password-wrapper">
+                    <input type="password" id="login-password" name="login-password" minlength="4" class="form-control" required>
+                    <button type="button" class="toggle-password">Show</button>
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn">Login</button>
+            </div>
+            
+            <div class="auth-links">
+                <p><a href="{% url "forget_password_page" %}">Forgot Password?</a></p>
+                <p><a href="{% url "forget_email_page" %}">Forgot Email?</a></p>
+                <p>Don't have an account? <a href="{% url "create_account_page" %}">Sign up</a></p>
+            </div>
+        </form>
+    </main>
+
+    <script src="{% static "script.js" %}"></script>
+</body>
+</html>

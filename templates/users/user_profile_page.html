@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" id="profile-page">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Profile</title>
+    <link rel="stylesheet" href="{% static "style.css" %}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>User Profile</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="{% url "landing_page" %}">Home</a></li>
+                    <li><a href="{% url "edit_profile_page" %}">Edit Profile</a></li>
+                    <li><a href="{% url "logout_account_page" %}">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content container">
+        <section class="card profile-section">
+            <div class="profile-header">
+                <img src="{{request.user.profile_image.url}}" alt="Profile Picture" class="profile-avatar">
+                <a href="{% url "upload_profile_image_page" %}" class="btn">Change Profile Pic </a>
+                <h2>Account Information</h2>
+            </div>
+            
+            <div class="profile-info">
+                <p><strong>Uid:</strong> <span id="profile-fullname">{{request.user.uid}}</span></p>
+                <p><strong>Full Name:</strong> <span id="profile-fullname">{{request.user.first_name}} {{request.user.last_name}}</span></p>
+                <p><strong>Username:</strong> <span id="profile-username">{{request.user.username}}</span></p>
+                <p><strong>Email:</strong> <span id="profile-email">{{request.user.email}}</span>{% if request.user.is_verified is False %} <a href="{% url "verify_profile_page" %}">Verify</a>{% endif %}</p>
+                <p><strong>Date of Birth:</strong> <span id="profile-dob">{{request.user.date_of_birth}}</span></p>
+                <p><strong>Phone:</strong> <span id="profile-phone">+91-{{request.user.phone_number}}</span></p>
+            </div>
+            
+            <div class="profile-actions">
+                <a href="{% url "edit_profile_page" %}" class="btn">Edit Profile</a>
+                <a href="{% url "edit_email_page" %}" class="btn btn-secondary">Change Email</a>
+                <a href="{% url "edit_password_page" %}" class="btn btn-secondary">Change Password</a>
+                <a href="{% url "delete_account" %}" class="btn btn-danger">Delete Account</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="{% static "script.js" %}"></script>
+</body>
+</html>

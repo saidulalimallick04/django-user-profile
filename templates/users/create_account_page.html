@@ -1,0 +1,88 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" id="signup-page">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="{% static "style.css" %}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Create Your Account</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="{% url "landing_page" %}">Home</a></li>
+                    {% comment %} <li><a href="{% url "create_account_page" %}">Sign Up</a></li> {% endcomment %}
+                    <li><a href="{% url "login_account_page" %}">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content container auth-container">
+        <form id="signup-form" class="card" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="firstname">First Name:</label>
+                <input type="text" id="firstname" name="first-name" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="lastname">Last Name:</label>
+                <input type="text" id="lastname" name="last-name" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="nickname">Nickname:</label>
+                <input type="text" id="nickname" name="nickname" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email-address" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number: (without +91 or 0)</label>
+                <input type="tel" id="phone" name="phone-number" pattern="[0-9]{10}" maxlength="10" class="form-control" required>
+            </div>
+            
+            
+            
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" class="form-control" minlength="4" required>
+                <div id="password-strength" class="password-strength"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" name="confirm-password" class="form-control" minlength="4" required>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">I agree to the <p class="terms-link">Terms and Conditions</p></label>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn">Create Account</button>
+                <a href="{% url "landing_page" %}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+        
+        <div class="auth-links">
+            <p>Already have an account? <a href="{% url "login_account_page" %}">Login here</a></p>
+        </div>
+    </main>
+
+    <script src="{% static "script.js" %}"></script>
+</body>
+</html>

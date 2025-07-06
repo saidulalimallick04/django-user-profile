@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="{% static "style.css" %}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Edit Profile</h1>
+        </div>
+    </header>
+
+    <main class="main-content container">
+        <form id="edit-profile-form" class="card"  method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="edit-first-name">First Name:</label>
+                <input type="text" id="edit-first-name" name="first-name" class="form-control" value="{{request.user.first_name}}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="edit-last-name">Last Name:</label>
+                <input type="text" id="edit-last-name" name="last-name" class="form-control" value="{{request.user.last_name}}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-nickname">Nickname:</label>
+                <input type="text" id="edit-nickname" name="nickname" class="form-control" value="{{request.user.username}}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-dob">Date of Birth:[MM/DD/YYYY]</label>
+                <input type="date" id="edit-dob" name="dob" class="form-control" value="{{request.user.date_of_birth | date:'Y-m-d' }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-phone">Phone Number:</label>
+                <input type="tel" id="edit-phone" name="phone" class="form-control" value="{{request.user.phone_number}}">
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn">Save Changes</button>
+                <a href="{% url "landing_page" %}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </main>
+
+    <script src="{% static "script.js" %}"></script>
+</body>
+</html>

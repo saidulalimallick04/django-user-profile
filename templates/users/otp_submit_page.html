@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" id="otp-verification-page">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+    <link rel="stylesheet" href="{% static "style.css" %}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Verify Your Identity</h1>
+        </div>
+    </header>
+
+    <main class="main-content container otp-container">
+        <form id="otp-verification-form" class="card" method="post">
+            {% csrf_token %}
+            <p>We've sent a 6-digit verification code to your email.</p>
+            
+            <div class="form-group">
+                <label for="recovery-email">Email Address:</label>
+                <input type="email"  id="recovery-email" value="{{user_email_address}}" name="email-address" class="form-control" readonly required>
+            </div>
+            <div class="form-group">
+                <label for="recovery-otp">OTP:</label>
+                <input type="text" id="recovery-otp" maxlength='6' name="OTP" class="form-control" required>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" name='OTP-submit' class="btn">Verify</button>
+                <a href="{% url "forget_password_page" %}" type="button" id="resend-otp" class="btn btn-secondary" >Change Email</a>
+            </div>
+
+        </form>
+    </main>
+
+    <script src="{% static "script.js" %}"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+[project]
+name = "django-user-profile"
+version = "0.1.0"
+description = "An re-usable django-app for user authencation purpose, and easy to implement."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "cloudinary>=1.44.1",
+    "django>=5.2.3",
+    "django-cloudinary-storage>=0.3.0",
+    "python-dotenv>=1.1.1",
+]

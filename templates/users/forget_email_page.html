@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" id="forgot-email-page">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Recovery</title>
+    <link rel="stylesheet" href="{% static "style.css" %}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Email Recovery</h1>
+        </div>
+    </header>
+
+    <main class="main-content container recovery-container">
+        <form id="email-recovery-form" class="card" method="post">
+            {% csrf_token %}
+            <p>Enter your account details to recover your email address.</p>
+            
+            <div class="form-group">
+                <label for="recovery-nickname">Nickname:</label>
+                <input type="text" id="recovery-nickname" name="nickname" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="recovery-dob">Date of Birth:</label>
+                <input type="date" id="recovery-dob" name="dob" class="form-control" required>
+            </div>
+            
+            {% comment %} <div class="form-group">
+                <label for="recovery-phone">Phone Number:</label>
+                <input type="tel" id="recovery-phone" name="phone" class="form-control">
+            </div> {% endcomment %}
+            
+            <div class="form-actions">
+                <button type="submit" class="btn">Find My Account</button>
+                <a href="{% url "login_account_page" %}" class="btn btn-secondary">Back to Login</a>
+            </div>
+        </form>
+    </main>
+
+    <script src="{% static "script.js" %}"></script>
+</body>
+</html>

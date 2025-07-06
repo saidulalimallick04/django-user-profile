@@ -1,0 +1,54 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Email Address</title>
+    <link rel="stylesheet" href="{% static "style.css" %}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Change Email Address</h1>
+        </div>
+    </header>
+
+    <main class="main-content container">
+        <form id="change-email-form" class="card" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="current-email">Current Email:</label>
+                <input type="email" id="current-email" name="current-email" class="form-control" value="{{request.user.email}}" readonly>
+            </div>
+            
+            <div class="form-group">
+                <label for="new-email">New Email:</label>
+                <input type="email" id="new-email" name="new-email" class="form-control" required>
+            </div>
+            
+            {% comment %} <div class="form-group">
+                <label for="confirm-email">Confirm New Email:</label>
+                <input type="email" id="confirm-email" name="confirm-email" class="form-control" required autocomplete="off">
+            </div> {% endcomment %}
+            
+            <div class="form-group">
+                <label for="current-password">Password:</label>
+                <div class="password-wrapper">
+                    <input type="password" id="current-password" name="current-password" class="form-control" required>
+                    <button type="button" class="toggle-password">Show</button>
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn">Update Email</button>
+                <a href="{% url "user_profile_page" %}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </main>
+
+    <script src="{% static "script.js" %}"></script>
+</body>
+</html>

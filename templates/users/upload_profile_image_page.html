@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" id="signup-page">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="{% static "style.css" %}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Create Your Account</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="{% url "landing_page" %}">Home</a></li>
+                    <li><a href="{% url "user_profile_page" %}">Profile</a></li>
+                
+                </ul>
+            
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content container auth-container">
+        <form id="signup-form" class="card" method="post" enctype="multipart/form-data">
+            
+            {% csrf_token %}
+                
+            <label for="file">Choose a file:</label><br>
+            <input type="file" name="profile-picture" id="file" accept="image/*,video/*,audio/*"><br><br>
+
+            
+            <div class="form-actions">
+                <button type="submit" class="btn">Upload</button>
+                <a href="{% url "user_profile_page" %}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </main>
+
+    <script src="{% static "script.js" %}"></script>
+</body>
+</html>
