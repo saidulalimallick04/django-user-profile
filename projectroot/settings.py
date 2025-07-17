@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # I hope you are aware of SECRET_KEY, you don't Use this in your main Project.
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # Who can hosts this project.
 ALLOWED_HOSTS = ["*"]
